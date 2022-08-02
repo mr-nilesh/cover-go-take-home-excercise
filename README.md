@@ -17,8 +17,9 @@ Install the `npm` packages described in the `package.json` and verify that it wo
 npm install
 ng serve --open
 ```
+This command will open up the application in the browser at http://localhost:4200/
 
-### Technical choices and architecture
+## Technical choices and architecture
 
 Code is written in Angular. Every screen has a separate component.
 
