@@ -38,3 +38,6 @@ There are 2 routes.
 1) / : This route opens up the welcome screen and it is the default route.
 2) /user-details : This route opens up the insurance form.
 ```
+
+## NOTE
+You may see 2 different usernames in the commit. Both are mine. FYI
