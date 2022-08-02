@@ -86,13 +86,12 @@
       <!-- Total premium begins -->
       <div class="total-premium-div">
         <span class="total">
-          Your premium is: &nbsp;&nbsp;
           <span *ngIf="userDetailsForm.controls['age'].value && userDetailsForm.controls['countryCurrency'].value && userDetailsForm.controls['countryCurrency'].value !== 'null'; else zeroPremium">
-            {{ totalPremium }}{{ userDetailsForm.controls['countryCurrency'].value }}
+            Your premium is: &nbsp;&nbsp;{{ totalPremium }}{{ userDetailsForm.controls['countryCurrency'].value }}
           </span>
           <ng-template #zeroPremium>
-            <span>
-              0
+            <span class="zero-premium">
+              Your premium will be calculated here based on your input.
             </span>
           </ng-template>
         </span>

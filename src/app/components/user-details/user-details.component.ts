@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 import { Country, InsuraneDetails, Package } from '@models';
 import { SubscriberComponent } from '../base-subscriber/base-subscriber.component';
 
@@ -23,7 +24,8 @@ export class UserDetailsComponent extends SubscriberComponent implements OnInit 
 
   constructor(
     private _fb: FormBuilder,
-    private _router: Router
+    private _router: Router,
+    private _toastr: ToastrService
   ) {
     super();
   }
@@ -68,6 +70,7 @@ export class UserDetailsComponent extends SubscriberComponent implements OnInit 
   }
 
   buyInsurance(insuraneDetails: InsuraneDetails) {
+    this._toastr.success('Insurance was bought successfully.');
     // TODO: Make API call to buy insurance
     this._router.navigate(['/']);
   }
