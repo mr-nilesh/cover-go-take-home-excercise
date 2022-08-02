@@ -36,8 +36,8 @@ export class UserDetailsComponent extends SubscriberComponent implements OnInit 
   }
 
   submitUserDetails() {
-    if (this.userDetailsForm.valid) {
-      const formData = this.userDetailsForm.value;
+    const formData = this.userDetailsForm.value;
+    if (this.userDetailsForm.valid && formData.countryCurrency !== 'null') {
       if (formData.age && parseInt(formData.age) > 100) {
         this.isError = true;
         this.errorMessage = `
@@ -54,7 +54,7 @@ export class UserDetailsComponent extends SubscriberComponent implements OnInit 
       };
       this.isSummary = true;
     } else {
-      this,this.userDetailsForm.markAllAsTouched();
+      this.userDetailsForm.markAllAsTouched();
     }
   }
 

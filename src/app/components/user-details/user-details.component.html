@@ -48,7 +48,11 @@
           </span>
         </div>
         <div>
-          <select class="input-box country-dropdown" formControlName="countryCurrency">
+          <select 
+            class="input-box country-dropdown"
+            [ngClass]="{'required-error': userDetailsForm.controls['countryCurrency'].value === 'null' && userDetailsForm.controls['countryCurrency'].touched}"
+            formControlName="countryCurrency"
+          >
             <option [value]="null">Select Country</option>
             <option *ngFor="let country of countryList" [value]="country.currency">
               {{ country.name }}
