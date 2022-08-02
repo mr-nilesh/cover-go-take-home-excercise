@@ -1,0 +1,51 @@
+<div class="insurance-summary-container">
+  <div class="cg-header">
+    <span>
+      Summary
+    </span>
+  </div>
+  <div class="sub-header">
+    <span>
+      {{ insuraneDetails.name }}
+    </span>
+  </div>
+  <div class="input-details">
+    <span>
+      Name: {{ insuraneDetails.name }}
+    </span>
+  </div>
+  <div class="input-details">
+    <span>
+      Age: {{ insuraneDetails.age }}
+    </span>
+  </div>
+  <div class="input-details">
+    <span>
+      Where do you live?: {{ insuraneDetails.country.name }}
+    </span>
+  </div>
+  <div class="input-details">
+    <span>
+      Package: {{ insuraneDetails.package.name }}
+    </span>
+  </div>
+  <div class="input-details">
+    <span>
+      Premium: {{ insuraneDetails.premium }}{{ insuraneDetails.country.currency }}
+    </span>
+  </div>
+  <!-- Buttons begins -->
+  <div class="buttons-div">
+    <span>
+      <button class="cg-secondary-button back-button" (click)="moveBack()">
+        Back
+      </button>
+    </span>
+    <span>
+      <button class="cg-primary-button next-button" (click)="buyInsurance()">
+        Buy
+      </button>
+    </span>
+  </div>
+  <!-- Buttons ends -->
+</div>

@@ -1,0 +1,71 @@
+@import '../../../assets/variables.less';
+
+.user-details-container {
+  margin: 10% 25%;
+  .div-center {
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    .input-div {
+      margin-top: 15px;
+    }
+    .input-label {
+      color: @cg-black;
+      font-size: 18px;
+    }
+    .input-box {
+      padding: 0 10px;
+      width: 100%;
+      height: 35px;
+      border: 1px solid @cg-input-border-color;
+      margin-top: 10px;
+      border-radius: 3px;
+    }
+    .input-box.ng-invalid.ng-touched {
+      border-color: red;
+    }
+
+    .country-dropdown {
+      background-color: @cg-white;
+      padding: 0 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .div-background {
+    width: 50%;
+    height: auto;
+    padding: 0 25%;
+    padding-bottom: 25%;
+    padding-top: 15px;
+    background-color: @cg-light-grey-bg-color;
+    .package-selector {
+      cursor: pointer;
+    }
+    .package-radio-btn {
+      margin-bottom: 15px;
+    }
+    .total-premium-div {
+      margin-top: 50px;
+      text-align: center;
+      .total {
+        font-size: 25px;
+      font-weight: 600;
+      }
+    }
+    .buttons-div {
+      text-align: center;
+      margin-top: 50px;
+      .next-button,
+      .back-button {
+        width: 150px;
+        padding: 15px;
+      }
+
+      .back-button {
+        margin-right: 25px;
+      }
+    }
+  }
+}

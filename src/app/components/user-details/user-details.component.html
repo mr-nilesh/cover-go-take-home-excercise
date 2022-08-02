@@ -1,0 +1,134 @@
+<form [formGroup]="userDetailsForm" (ngSubmit)="submitUserDetails()" *ngIf="!isSummary && !isError">
+  <div class="user-details-container">
+    <!-- Header begins -->
+    <div class="cg-header">
+      <span>
+        Tell us about yourself
+      </span>
+    </div>
+    <!-- Header ends -->
+    <div class="div-center">
+      <!-- Name begins -->
+      <div class="input-div">
+        <div>
+          <span class="input-label">
+            Name
+          </span>
+        </div>
+        <div>
+          <input
+            class="input-box"
+            [ngClass]="{'required-message': userDetailsForm.get('name')?.invalid && userDetailsForm.get('name')?.dirty}"
+            formControlName="name"
+            placeholder="Nilesh Mistry" />
+        </div>
+      </div>
+      <!-- Name ends -->
+      <!-- Age begins -->
+      <div class="input-div">
+        <div>
+          <span class="input-label">
+            Age
+          </span>
+        </div>
+        <div>
+          <input
+            class="input-box"
+            formControlName="age"
+            (keypress)="numbersOnly($event)"
+            placeholder="32" />
+        </div>
+      </div>
+      <!-- Age ends -->
+      <!-- Country begins -->
+      <div class="input-div">
+        <div>
+          <span class="input-label">
+            Where do you live?
+          </span>
+        </div>
+        <div>
+          <select class="input-box country-dropdown" formControlName="countryCurrency">
+            <option [value]="null">Select Country</option>
+            <option *ngFor="let country of countryList" [value]="country.currency">
+              {{ country.name }}
+            </option>  
+          </select>  
+        </div>
+      </div>
+      <!-- Country ends -->
+    </div>
+    <div class="div-background">
+      <!-- Package type begins -->
+      <div *ngFor="let package of packages" class="package-radio-btn">
+        <input
+          type="radio"
+          name="package"
+          class="package-selector"
+          formControlName="package"
+          [value]="package">
+            {{ package.name }}
+            <span *ngIf="
+                  package.pkgRatePercentage && userDetailsForm.controls['age'].value
+                  && userDetailsForm.controls['countryCurrency'].value
+                  && userDetailsForm.controls['countryCurrency'].value !== 'null'
+                  && package.pkgRatePercentage > 1"
+            >
+              (+{{ (standardPremium * package.pkgRatePercentage) / 100 }}{{ userDetailsForm.controls['countryCurrency'].value }}, {{ package.pkgRatePercentage }}%)
+            </span>
+          <br/>
+      </div>
+      <!-- Package type ends -->
+      <!-- Total premium begins -->
+      <div class="total-premium-div">
+        <span class="total">
+          Your premium is: &nbsp;&nbsp;
+          <span *ngIf="userDetailsForm.controls['age'].value && userDetailsForm.controls['countryCurrency'].value && userDetailsForm.controls['countryCurrency'].value !== 'null'; else zeroPremium">
+            {{ totalPremium }}{{ userDetailsForm.controls['countryCurrency'].value }}
+          </span>
+          <ng-template #zeroPremium>
+            <span>
+              0
+            </span>
+          </ng-template>
+        </span>
+      </div>
+      <!-- Total premium ends -->
+      <!-- Buttons begins -->
+      <div class="buttons-div">
+        <span>
+          <button routerLink="/" class="cg-secondary-button back-button">
+            Back
+          </button>
+        </span>
+        <span>
+          <button class="cg-primary-button next-button" type="submit">
+            Next
+          </button>
+        </span>
+      </div>
+      <!-- Buttons ends -->
+    </div>
+  </div>
+</form>
+
+<!-- Insurance summary begins -->
+<ng-container *ngIf="isSummary">
+  <!-- I can call this component based on route, but for now I have kept here as we don't have any API. -->
+  <app-insurance-summary
+    [insuraneDetails]="insuranceDetails"
+    (onCancel)="cancelSummaryMode()"
+    (onBuy)="buyInsurance($event)"
+  ></app-insurance-summary>
+</ng-container>
+<!-- Insurance summary ends -->
+
+<!-- Error message begins -->
+<ng-container *ngIf="isError">
+  <!-- I can call this component based on route, but for now I have kept here as we don't have any API. -->
+  <app-error-message
+    [message]="errorMessage"
+    (onSubmit)="cancelErrorMode()"
+  ></app-error-message>
+</ng-container>
+<!-- Error message ends -->
