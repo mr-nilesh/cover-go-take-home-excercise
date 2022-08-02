@@ -19,7 +19,21 @@ export class UserDetailsComponent extends SubscriberComponent implements OnInit 
   standardPremium: number = 0;
   isSummary: boolean = false;
   isError: boolean = false;
-  insuranceDetails: any = {};
+  insuranceDetails: InsuraneDetails = {
+    name: '',
+    age: '',
+    country: {
+      name: '',
+      currency: '',
+      rate: 1
+    },
+    package: {
+      name: '',
+      key: '',
+      pkgRatePercentage: 1
+    },
+    premium: 0
+  };
   errorMessage: string = '';
 
   constructor(
@@ -50,7 +64,11 @@ export class UserDetailsComponent extends SubscriberComponent implements OnInit 
       this.insuranceDetails = {
         name: formData.name,
         age: formData.age,
-        country: this.countryList.find((country: Country) => country.currency === formData.countryCurrency),
+        country: this.countryList.find((country: Country) => country.currency === formData.countryCurrency) || {
+          name: '',
+          currency: '',
+          rate: 1
+        },
         package: formData.package,
         premium: this.totalPremium
       };
